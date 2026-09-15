@@ -1,3 +1,9 @@
+'''
+This program generates a 2D Perlin worm path on a blank image
+This file was created to develop and test the algorithm for generating a river
+on a Perlin noise map.
+'''
+
 from PIL import Image
 import numpy as np
 import math
@@ -23,6 +29,7 @@ def fade(t):
     return ((6 * t - 15) * t + 10) * t * t * t
 
 # compute Perlin noise value for pixel
+# The Perlin noise map is used in generating the path of the river
 def perlin_noise2D(x, y, grid):
     # the two factors used
     ix = int(x)
@@ -45,7 +52,6 @@ def perlin_noise2D(x, y, grid):
     dot11 = dot_2D(v11, get_perlin_grid(ix + 1, iy + 1, grid))
 
     # interpolate the dot products to find the value of the point
-
     # u and v range from [0, 1]
     u = fade(x_factor)
     v = fade(y_factor)
@@ -129,6 +135,7 @@ def dilation(image):
 
     return image 
 
+# Add a shore around the river
 def shore_dilation(image):
     raster = image.load()
 

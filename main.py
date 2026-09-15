@@ -1,3 +1,7 @@
+'''
+This program generates 
+'''
+
 from PIL import Image
 import numpy as np
 import math
@@ -215,7 +219,7 @@ def add_rivers(image, land_raster, scale_ratio, num_rivers, exempt_colors, seed)
             y_rand = np.random.randint(0, image.height - 1)
 
             pixel = raster[x_rand, y_rand]
-        
+
         duration = np.random.randint(0, int((image.width - 1) / 2))
         image = perlin_worm(image, x_rand, y_rand, seed + i, duration, river_color, exempt_colors)
     
@@ -244,13 +248,14 @@ def add_rivers(image, land_raster, scale_ratio, num_rivers, exempt_colors, seed)
     return image
 
 # generate composite Perlin noise map, using multiple layers, Perlin worms, dilation, and adding shores
-def generate_map(w, h, scale, seed):
+def generate_map(w, h, scale, seed, rivers):
     land = generate_noise(w, h, scale, seed)
     land_raster = land.load()
 
     image = Image.new("RGB", (w, h))
     image_raster = image.load()
 
+    # land and ocean colors
     deep_water = (16, 76, 179)
     medium_water = (62, 133, 255)
     shallow_water = (38, 183, 255)
@@ -303,10 +308,11 @@ def generate_map(w, h, scale, seed):
                     image_raster[x,y] = snow
     
     # add rivers using Perlin worms
-    sr = (image.width + image.height) / 2 / scale
-    np.random.seed(seed)
-    num_rivers = np.random.randint(0, 30)
-    image = add_rivers(image, land_raster, sr, num_rivers, [deep_water, medium_water, shallow_water, ice, snow], seed)
+    if rivers == 'y':
+        sr = (image.width + image.height) / 2 / scale
+        np.random.seed(seed)
+        num_rivers = np.random.randint(0, 30)
+        image = add_rivers(image, land_raster, sr, num_rivers, [deep_water, medium_water, shallow_water, ice, snow], seed)
 
     return image
 
@@ -315,9 +321,10 @@ def main():
     h = int(input("Image height: "))
     s = int(input("Scale: "))
     seed = int(input("Seed: "))
+    rivers = (input("Add rivers? (y/n): "))
     img_name = input("Image filename: ")
 
-    generate_map(w, h, s, seed).save(img_name + ".png")
+    generate_map(w, h, s, seed, rivers.lower()).save(img_name + ".png")
 
 main()
 
@@ -328,4 +335,5 @@ main()
 # Large map: 256x256, scale 75
 
 # in general, larger scales create more zoomed in maps
-# depending on the size of the image, the scale ratio will change and affect how rivers are generated as well as the amount of dilation
+# depending on the size of the image, the scale ratio will change
+# and affect how rivers are generated as well as the amount of dilation

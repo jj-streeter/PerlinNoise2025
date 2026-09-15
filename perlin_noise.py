@@ -1,3 +1,8 @@
+'''
+This program generates a a 2D Perlin noise image in grayscale.
+This file was created to develop and test the algorithm
+'''
+
 from PIL import Image
 import numpy as np
 import math
@@ -69,6 +74,7 @@ def generate_noise(w, h, scale, seed):
 
     image.save("PerlinNoiseTest.png")
 
+# Binary (black and white) Perlin noise image
 def generate_binary_noise(w, h, scale, seed):
     image1 = Image.new("RGB", (w, h))
     raster1 = image1.load()

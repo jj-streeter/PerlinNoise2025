@@ -1,3 +1,8 @@
+'''
+This program takes an image width and height in pixels, a scale factor, and an integer seed value as input to generate a value noise image
+in either grayscale or color RGB.
+'''
+
 from PIL import Image
 import numpy as np
 
@@ -39,47 +44,49 @@ def noise_2d(x, y, seed=0):
     return noise_value * 255
 
 # generate random noise image
-def generate_noise(w, h, scale, seed=0):
+def generate_noise(w, h, scale, grayscale, seed=0):
     noise_Image = Image.new("RGB", (w, h))
     raster = noise_Image.load()
 
     for x in range(noise_Image.width):
         for y in range(noise_Image.height):
             val = int(noise_2d(x / scale, y / scale, seed))
-            
-            if (val > 220):
-                raster[x,y] = (245, 238, 218)
-            elif (val > 200):
-                raster[x,y] = (194, 189, 176)
-            elif (val > 180):
-                raster[x,y] = (69, 68, 67)
-            elif (val > 160):
-                raster[x,y] = (51, 37, 20)
-            elif (val > 140):
-                raster[x,y] = (41, 64, 16)
-            elif (val > 120):
-                raster[x,y] = (64, 112, 11)
-            elif (val > 100):
-                raster[x,y] = (191, 187, 111)
-            elif (val > 80):
-                raster[x,y] = (51, 166, 189)
-            elif (val > 60):
-                raster[x,y] = (17, 50, 125)
-            elif (val > 40):
-                raster[x,y] = (8, 31, 84)
-            elif (val > 20):
-                raster[x,y] = (4, 20, 56)
 
-            #raster[x,y] = (val, val, val) # grayscale
+            if (grayscale == 'y'):
+                raster[x,y] = (val, val, val)
+            else:
+                if (val > 220):
+                    raster[x,y] = (245, 238, 218)
+                elif (val > 200):
+                    raster[x,y] = (194, 189, 176)
+                elif (val > 180):
+                    raster[x,y] = (69, 68, 67)
+                elif (val > 160):
+                    raster[x,y] = (51, 37, 20)
+                elif (val > 140):
+                    raster[x,y] = (41, 64, 16)
+                elif (val > 120):
+                    raster[x,y] = (64, 112, 11)
+                elif (val > 100):
+                    raster[x,y] = (191, 187, 111)
+                elif (val > 80):
+                    raster[x,y] = (51, 166, 189)
+                elif (val > 60):
+                    raster[x,y] = (17, 50, 125)
+                elif (val > 40):
+                    raster[x,y] = (8, 31, 84)
+                elif (val > 20):
+                    raster[x,y] = (4, 20, 56)
 
-    noise_Image.save("./valueNoise.png")
+    noise_Image.save("valueNoise.png")
 
 def main():
     image_width = int(input("Image width: "))
     image_height = int(input("Image height: "))
     image_scale = int(input("Scale: "))
+    grayscale = input("Grayscale? (y/n): ")
     seed = int(input("Seed: "))
 
-    generate_noise(image_width, image_height, image_scale, seed)
+    generate_noise(image_width, image_height, image_scale, seed, grayscale.lower())
 
 main()

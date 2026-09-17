@@ -1,3 +1,8 @@
+<img width="256" height="256" alt="image" src="https://github.com/user-attachments/assets/ce07f0b4-3f03-4de6-aa19-e2c8876b2f78" />
+<img width="256" height="256" alt="image" src="https://github.com/user-attachments/assets/a57c0864-b2b5-4951-9d56-6a51ae54ecd8" />
+<img width="256" height="256" alt="image" src="https://github.com/user-attachments/assets/30f5e1f8-2ce9-478e-a05e-c195434d54f3" />
+
+
 
 # Project Overview:
 A program that uses Perlin noise to generate 2D images

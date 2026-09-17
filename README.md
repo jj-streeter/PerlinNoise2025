@@ -2,10 +2,8 @@
 <img width="256" height="256" alt="image" src="https://github.com/user-attachments/assets/a57c0864-b2b5-4951-9d56-6a51ae54ecd8" />
 <img width="256" height="256" alt="image" src="https://github.com/user-attachments/assets/30f5e1f8-2ce9-478e-a05e-c195434d54f3" />
 
-
-
 # Project Overview:
-A program that uses Perlin noise to generate 2D images
+This project was completed from August to December of 2025 for CSCI 2620 2D Graphics at University of Nebraska at Omaha.
 
 # Intructions for running:
 1. Download or clone the PerlinNoise2025 project
@@ -23,3 +21,5 @@ Used 8-neighbor pixel checks to expand river paths and create shoreline effects 
 Generated repeatable terrain, textures, and river layouts from mathematical rules and integer seeds
 ### Perlin noise algorithm
 Implemented 2D Perlin noise with gradient vectors and a fade function to produce smooth, natural-looking terrain and guide Perlin worm river paths
+
+# The Perlin Noise Algorithm:

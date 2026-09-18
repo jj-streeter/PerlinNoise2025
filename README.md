@@ -5,7 +5,7 @@
 # Project Overview:
 This project was completed from August to December of 2025 for CSCI 2620 2D Graphics at University of Nebraska at Omaha. The objective was to learn and implement the algorithm developed by Ken Perlin, a gradient noise function, to procedurally generate unique and replicable images that resemble geographical maps. This algorithm has applications in creating organic image textures and terrain generation for computer games, which was the inspiration for this project. 
 
-# Intructions for running:
+# Instructions for running:
 1. Download or clone the PerlinNoise2025 project
 2. Run main.py in a terminal and provide input when prompted
 3. Images will be saved in the same folder as the project
